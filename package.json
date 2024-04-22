@@ -1,0 +1,18 @@
+{
+  "name": "nestjs-discovery",
+  "version": "1.0.0",
+  "description": "This repository is dedicated to learning Nest.js, a high-performance, progressive and advanced framework for developing Node.js applications. ",
+  "main": "index.ts",
+  "author": "Ndekocode",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@nestjs/common": "^10.3.8",
+    "@nestjs/core": "^10.3.8",
+    "@nestjs/platform-express": "^10.3.8",
+    "reflect-metadata": "^0.2.2"
+  }
+}
