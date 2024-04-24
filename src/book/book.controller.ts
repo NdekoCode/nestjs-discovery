@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
 
 @Controller('books')
 export class BookController {
@@ -11,7 +11,6 @@ export class BookController {
   @Get('/:id')
   getById(@Param('id') id: number): string {
     const book = this.books[id];
-    console.log(book);
     if (!book) {
       throw new NotFoundException();
     }
@@ -21,5 +20,21 @@ export class BookController {
   addBook(@Body('title') book: string): string {
     this.books.push(book);
     return book;
+  }
+
+  @Put('/:id')
+  updateBook(
+    @Param('id') bookIndex: string,
+    @Body('title') newValue: string,
+  ): string {
+    const findBook = this.books[bookIndex];
+    if (!findBook) {
+      throw new NotFoundException();
+    }
+
+    this.books[+bookIndex] = newValue;
+
+    console.log(bookIndex, this.books);
+    return newValue;
   }
 }

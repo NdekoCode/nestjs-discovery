@@ -51,4 +51,16 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect(['Les 48 lois du pouvoir', newBook]);
   });
+  it('/books/:id [PUT][200]', async () => {
+    await request(app.getHttpServer())
+      .put('/books/0')
+      .send({
+        title: 'Apprendre à se concentrer',
+      })
+      .expect(200);
+    await request(app.getHttpServer())
+      .get('/books/0')
+      .expect(200)
+      .expect('Apprendre à se concentrer');
+  });
 });
