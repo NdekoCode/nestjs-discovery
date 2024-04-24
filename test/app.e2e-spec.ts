@@ -72,8 +72,11 @@ describe('AppController (e2e)', () => {
       })
       .expect(404);
   });
-  it('/books/:id [DELETE][204]',  async () => {
+  it('/books/:id [DELETE][204]', async () => {
     await request(app.getHttpServer()).delete('/books/0').expect(200);
     await request(app.getHttpServer()).get('/books/0').expect(404);
+  });
+  it('/books/:id [DELETE][404]', async () => {
+    await request(app.getHttpServer()).delete('/books/1').expect(404);
   });
 });
