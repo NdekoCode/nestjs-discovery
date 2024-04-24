@@ -63,4 +63,13 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect('Apprendre à se concentrer');
   });
+
+  it('/books/:id [PUT][404]', async () => {
+    await request(app.getHttpServer())
+      .put('/books/-100')
+      .send({
+        title: 'Les lois de la guerre',
+      })
+      .expect(404);
+  });
 });
