@@ -17,13 +17,25 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/ [GET]', () => {
     return request(app.getHttpServer())
       .get('/')
       .expect(200)
       .expect('Hello Nest.js!');
   });
-  it('/books (GET)', () => {
-    return request(app.getHttpServer()).get('/books').expect(200).expect([]);
+  it('/books [GET]', () => {
+    return request(app.getHttpServer())
+      .get('/books')
+      .expect(200)
+      .expect(['Les 48 lois du pouvoir']);
+  });
+  it('/books/:id [GET][200]', () => {
+    return request(app.getHttpServer())
+      .get('/books/0')
+      .expect(200)
+      .expect('Les 48 lois du pouvoir');
+  });
+  it('/books/:id [GET][404]', () => {
+    return request(app.getHttpServer()).get('/books/-100').expect(404);
   });
 });
