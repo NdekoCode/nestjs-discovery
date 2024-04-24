@@ -1,4 +1,4 @@
-import { Body, Controller, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
 
 @Controller('books')
 export class BookController {
@@ -33,8 +33,16 @@ export class BookController {
     }
 
     this.books[+bookIndex] = newValue;
-
-    console.log(bookIndex, this.books);
     return newValue;
+  }
+
+  @Delete('/:id')
+  deleteBook(@Param('id') bookIndex: string) {
+    console.log(this.books);
+    const findBook = this.books[+bookIndex];
+    if (!findBook) {
+      throw new NotFoundException();
+    }
+    this.books.splice(+bookIndex, 1);
   }
 }
