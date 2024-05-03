@@ -21,11 +21,11 @@ export class TodoController {
   }
 
   @Put(':id')
-  updateTodo(@Param('id') id: string, @Body() todo: Todo): Todo {
+  updateTodo(@Param('id') id: string, @Body() todo:  Partial<Todo>): Todo {
       return this.todosService.updateTodo(id, todo);
   }
   @Delete(':id')
-  deleteTodo(@Param('id') id: string): string {
+  deleteTodo(@Param('id') id: string): {message:string} {
     return this.todosService.deleteTodo(id);
   }
 }

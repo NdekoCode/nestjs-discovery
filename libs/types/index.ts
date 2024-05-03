@@ -4,3 +4,4 @@ export interface Todo {
   isCompleted?: boolean;
   description: string;
 }
+export type PartialTodo = Partial<Todo>;
