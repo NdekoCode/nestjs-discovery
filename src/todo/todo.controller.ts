@@ -6,26 +6,26 @@ import { TodoService } from './todo.service';
 
 @Controller('todos')
 export class TodoController {
-  constructor(private todosService: TodoService) {}
+  constructor(private todoService: TodoService) {}
   @Get()
   getTodos(): Todo[] {
-    return this.todosService.todos;
+    return this.todoService.todos;
   }
   @Get(':id')
   singleTodo(@Param('id') id: string): Todo {
-    return this.todosService.getSingleTodo(id);
+    return this.todoService.getSingleTodo(id);
   }
   @Post()
   addTodo(@Body() todo: { title: string; description: string }): Todo {
-    return this.todosService.addTodo(todo);
+    return this.todoService.addTodo(todo);
   }
 
   @Put(':id')
   updateTodo(@Param('id') id: string, @Body() todo:  Partial<Todo>): Todo {
-      return this.todosService.updateTodo(id, todo);
+      return this.todoService.updateTodo(id, todo);
   }
   @Delete(':id')
   deleteTodo(@Param('id') id: string): {message:string} {
-    return this.todosService.deleteTodo(id);
+    return this.todoService.deleteTodo(id);
   }
 }
