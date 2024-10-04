@@ -1,6 +1,7 @@
+import { Request } from 'express';
 import { Todo } from 'libs/types';
 
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 
 import { TodoService } from './todo.service';
 
@@ -8,8 +9,9 @@ import { TodoService } from './todo.service';
 export class TodoController {
   constructor(private todoService: TodoService) {}
   @Get()
-  getTodos(): Todo[] {
-    return this.todoService.todos;
+  getTodos(@Req() req: Request): Todo[] {
+    console.log(req);
+     return this.todoService.todos
   }
   @Get(':id')
   singleTodo(@Param('id') id: string): Todo {
@@ -21,11 +23,11 @@ export class TodoController {
   }
 
   @Put(':id')
-  updateTodo(@Param('id') id: string, @Body() todo:  Partial<Todo>): Todo {
-      return this.todoService.updateTodo(id, todo);
+  updateTodo(@Param('id') id: string, @Body() todo: Partial<Todo>): Todo {
+    return this.todoService.updateTodo(id, todo);
   }
   @Delete(':id')
-  deleteTodo(@Param('id') id: string): {message:string} {
+  deleteTodo(@Param('id') id: string): { message: string } {
     return this.todoService.deleteTodo(id);
   }
 }

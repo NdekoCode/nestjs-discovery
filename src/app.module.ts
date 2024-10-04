@@ -7,10 +7,11 @@ import { IngredientModule } from './ingredient/ingredient.module';
 import { LoginController } from './login/login.controller';
 import { RecipeModule } from './recipe/recipe.module';
 import { TodoController } from './todo/todo.controller';
+import { TodoModule } from './todo/todo.module';
 import { TodoService } from './todo/todo.service';
 
 @Module({
-  imports: [RecipeModule, IngredientModule],
+  imports: [RecipeModule, IngredientModule,TodoModule],
   controllers: [AppController, BookController,TodoController,LoginController],
   providers: [AppService, TodoService],
 })
