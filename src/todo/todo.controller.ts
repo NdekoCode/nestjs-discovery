@@ -1,5 +1,6 @@
 import { Request } from 'express';
 import { Todo } from 'libs/types';
+import { UpperAndMergePipe } from 'src/pipes/upper-and-merge/upper-and-merge.pipe';
 
 import {
     Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Query, Req
@@ -57,5 +58,10 @@ export class TodoController {
     id: string,
   ): { message: string } {
     return this.todoService.deleteTodo(id);
+  }
+
+  @Post('test-pipe')
+  testPipe(@Body(UpperAndMergePipe) data){
+    return data
   }
 }
