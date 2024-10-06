@@ -15,7 +15,7 @@ export class TodoController {
   @Get()
   getTodos(@Req() req: Request, @Query() query: GetPaginatedTodoDTO): Todo[] {
     let todos = this.todoService.todos;
-    console.log('Query', query);
+    console.log('Query', query, query instanceof GetPaginatedTodoDTO);
     if (query) {
       console.log(
         'TODO QUERY.PAGE',
