@@ -1,3 +1,4 @@
+import { MorganMiddleware } from '@nest-middlewares/morgan';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
 import { AppController } from './app.controller';
@@ -6,6 +7,7 @@ import { BookController } from './book/book.controller';
 import { IngredientModule } from './ingredient/ingredient.module';
 import { LoginController } from './login/login.controller';
 import { FirstMiddleware } from './middlewares/first/first.middleware';
+import { logger } from './middlewares/first/logger.middleware';
 import { RecipeModule } from './recipe/recipe.module';
 import { TodoController } from './todo/todo.controller';
 import { TodoModule } from './todo/todo.module';
@@ -18,6 +20,8 @@ import { TodoService } from './todo/todo.service';
 })
 export class AppModule implements NestModule{
   configure(consumer:MiddlewareConsumer){
-    consumer.apply(FirstMiddleware).forRoutes(TodoController)
+    consumer.apply(FirstMiddleware).forRoutes(TodoController).apply(logger).forRoutes('')
+    MorganMiddleware.configure('dev')
+    consumer.apply(MorganMiddleware).forRoutes();
   }
 }
