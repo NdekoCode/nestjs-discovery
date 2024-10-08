@@ -669,6 +669,16 @@
   resolved "https://registry.yarnpkg.com/@lukeed/csprng/-/csprng-1.1.0.tgz#1e3e4bd05c1cc7a0b2ddbd8a03f39f6e4b5e6cfe"
   integrity sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==
 
+"@nest-middlewares/helmet@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@nest-middlewares/helmet/-/helmet-10.0.0.tgz#78347db9a82c877077dc50959add59a2e2d6f061"
+  integrity sha512-cH60qatw1RqfiofxRCbhGnQgEldqsIbFtj5y99aHD4ejcXbzyPc0jitNdQMkjdYY5wp+cM3+Cvm5FtrzlarMOQ==
+  dependencies:
+    "@types/express" "^4.16.0"
+    "@types/express-serve-static-core" "^4.16.0"
+    "@types/helmet" "4.0.0"
+    helmet "^7.0.0"
+
 "@nest-middlewares/morgan@^10.0.0":
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@nest-middlewares/morgan/-/morgan-10.0.0.tgz#71421417e2de60b1eaa0749be22e4939162bc64e"
@@ -891,7 +901,7 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.6.tgz#628effeeae2064a1b4e79f78e81d87b7e5fc7b50"
   integrity sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==
 
-"@types/express-serve-static-core@^4.17.0", "@types/express-serve-static-core@^4.17.33":
+"@types/express-serve-static-core@^4.16.0", "@types/express-serve-static-core@^4.17.0", "@types/express-serve-static-core@^4.17.33":
   version "4.19.6"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.19.6.tgz#e01324c2a024ff367d92c66f48553ced0ab50267"
   integrity sha512-N4LZ2xG7DatVqhCZzOGb1Yi5lMbXSZcmdLDe9EzSndPV2HpWYWzRbaerl2n27irrm94EPpprqa8KpskPT085+A==
@@ -901,7 +911,7 @@
     "@types/range-parser" "*"
     "@types/send" "*"
 
-"@types/express@^4.17.0", "@types/express@^4.17.17":
+"@types/express@^4.16.0", "@types/express@^4.17.0", "@types/express@^4.17.17":
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.21.tgz#c26d4a151e60efe0084b23dc3369ebc631ed192d"
   integrity sha512-ejlPM315qwLpaQlQDTjPdsUFSc6ZsP4AN6AlWnogPjQ7CVi7PYF3YVz+CY3jE2pwYf7E/7HlDAN0rV2GxTG0HQ==
@@ -917,6 +927,13 @@
   integrity sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==
   dependencies:
     "@types/node" "*"
+
+"@types/helmet@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/helmet/-/helmet-4.0.0.tgz#af7af46de26abe368b85360769ae9938bfb2318a"
+  integrity sha512-ONIn/nSNQA57yRge3oaMQESef/6QhoeX7llWeDli0UZIfz8TQMkfNPTXA8VnnyeA1WUjG2pGqdjEIueYonMdfQ==
+  dependencies:
+    helmet "*"
 
 "@types/http-errors@*":
   version "2.0.4"
@@ -2734,6 +2751,16 @@ hasown@^2.0.0, hasown@^2.0.2:
   integrity sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==
   dependencies:
     function-bind "^1.1.2"
+
+helmet@*:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-8.0.0.tgz#05370fb1953aa7b81bd0ddfa459221247be6ea5c"
+  integrity sha512-VyusHLEIIO5mjQPUI1wpOAEu+wl6Q0998jzTxqUYGE45xCIcAxy3MsbEK/yyJUJ3ADeMoB6MornPH6GMWAf+Pw==
+
+helmet@^7.0.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-7.2.0.tgz#8b2dcc425b4a46c88f6953481b40453cbe66b167"
+  integrity sha512-ZRiwvN089JfMXokizgqEPXsl2Guk094yExfoDXR0cBYWxtBbaSww/w+vT4WEJsBW2iTUi1GgZ6swmoug3Oy4Xw==
 
 hexoid@^1.0.0:
   version "1.0.0"

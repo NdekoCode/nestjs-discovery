@@ -1,3 +1,4 @@
+import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { MorganMiddleware } from '@nest-middlewares/morgan';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
@@ -22,6 +23,7 @@ export class AppModule implements NestModule{
   configure(consumer:MiddlewareConsumer){
     consumer.apply(FirstMiddleware).forRoutes(TodoController).apply(logger).forRoutes('')
     MorganMiddleware.configure('dev')
-    consumer.apply(MorganMiddleware).forRoutes();
+    consumer.apply(MorganMiddleware).forRoutes('');
+    consumer.apply(HelmetMiddleware).forRoutes('')
   }
 }
