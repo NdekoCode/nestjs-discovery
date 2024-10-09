@@ -1,4 +1,5 @@
 import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
@@ -6,7 +7,10 @@ import { DurationInterceptor } from './interceptors/duration/duration.intercepto
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const PORT = 3000;
+  // app.get() nous permet de recuperer une instance d'un service d'un controller avec l'injection de dependance
+  const configService  =app.get(ConfigService)
+  
+  const PORT = configService.get('APP_PORT');
   // app.use(morgan('dev'));
   app.useGlobalPipes(
     new ValidationPipe({

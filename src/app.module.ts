@@ -1,6 +1,7 @@
 import { HelmetMiddleware } from '@nest-middlewares/helmet';
 import { MorganMiddleware } from '@nest-middlewares/morgan';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,15 +16,24 @@ import { TodoModule } from './todo/todo.module';
 import { TodoService } from './todo/todo.service';
 
 @Module({
-  imports: [RecipeModule, IngredientModule,TodoModule],
-  controllers: [AppController, BookController,TodoController,LoginController],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    RecipeModule,
+    IngredientModule,
+    TodoModule,
+  ],
+  controllers: [AppController, BookController, TodoController, LoginController],
   providers: [AppService, TodoService],
 })
-export class AppModule implements NestModule{
-  configure(consumer:MiddlewareConsumer){
-    consumer.apply(FirstMiddleware).forRoutes(TodoController).apply(logger).forRoutes('')
-    MorganMiddleware.configure('dev')
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(FirstMiddleware)
+      .forRoutes(TodoController)
+      .apply(logger)
+      .forRoutes('');
+    MorganMiddleware.configure('dev');
     consumer.apply(MorganMiddleware).forRoutes('');
-    consumer.apply(HelmetMiddleware).forRoutes('')
+    consumer.apply(HelmetMiddleware).forRoutes('');
   }
 }
