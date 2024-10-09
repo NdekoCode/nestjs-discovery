@@ -669,6 +669,16 @@
   resolved "https://registry.yarnpkg.com/@lukeed/csprng/-/csprng-1.1.0.tgz#1e3e4bd05c1cc7a0b2ddbd8a03f39f6e4b5e6cfe"
   integrity sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==
 
+"@nest-middlewares/cors@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@nest-middlewares/cors/-/cors-10.0.0.tgz#ccd2247b4ff6ddcbb3451885bf7b56d0f9b5e7bd"
+  integrity sha512-JThVRZaUPRJJcb9tOE/tHd/sUFoFj71UFmMtd9XUKxKesKf8d6gI6EzpQ1JOKEb80gssnXoz3Uc1RFBvNAD1JA==
+  dependencies:
+    "@types/cors" "^2.8.3"
+    "@types/express" "^4.16.0"
+    "@types/express-serve-static-core" "^4.16.0"
+    cors "^2.8.4"
+
 "@nest-middlewares/helmet@^10.0.0":
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/@nest-middlewares/helmet/-/helmet-10.0.0.tgz#78347db9a82c877077dc50959add59a2e2d6f061"
@@ -895,6 +905,13 @@
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@types/cookiejar/-/cookiejar-2.1.5.tgz#14a3e83fa641beb169a2dd8422d91c3c345a9a78"
   integrity sha512-he+DHOWReW0nghN24E1WUqM0efK4kI9oTqDm6XmK8ZPe2djZ90BSNdGnIyCLzCPw7/pogPlGbzI2wHGGmi4O/Q==
+
+"@types/cors@^2.8.3":
+  version "2.8.17"
+  resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.17.tgz#5d718a5e494a8166f569d986794e49c48b216b2b"
+  integrity sha512-8CGDvrBj1zgo2qE+oS3pOCyYNqCPryMWY2bGfwA0dcfopWGgxs+78df0Rs3rc9THP4JkOhLsAa+15VdpAqkcUA==
+  dependencies:
+    "@types/node" "*"
 
 "@types/estree@^1.0.5":
   version "1.0.6"
@@ -1934,7 +1951,7 @@ core-util-is@^1.0.3, core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
 
-cors@2.8.5:
+cors@2.8.5, cors@^2.8.4:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.5.tgz#eac11da51592dd86b9f06f6e7ac293b3df875d29"
   integrity sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
