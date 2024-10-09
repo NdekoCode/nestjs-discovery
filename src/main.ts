@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app.module';
+import { DurationInterceptor } from './interceptors/duration/duration.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,7 @@ async function bootstrap() {
     }),
   );
   
+  app.useGlobalInterceptors(new DurationInterceptor())
   await app.listen(PORT, () => {
     console.log(`Server Start on ${PORT}`);
   });

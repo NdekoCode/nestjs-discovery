@@ -3,13 +3,24 @@ import { Todo } from 'libs/types';
 import { UpperAndMergePipe } from 'src/pipes/upper-and-merge/upper-and-merge.pipe';
 
 import {
-    Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Query, Req
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+  Req,
 } from '@nestjs/common';
 
 import { AddTodoDTO } from './dto/add-todo.dto';
 import { GetPaginatedTodoDTO } from './dto/get-paginated-todo.dto';
 import { TodoService } from './todo.service';
 
+// @UseInterceptors(DurationInterceptor) Isoler un interceptor pour qu'il soit utilisable uniquement sur les routes de ce controller
 @Controller('todos')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
