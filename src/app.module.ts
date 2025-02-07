@@ -14,6 +14,7 @@ import { RecipeModule } from './recipe/recipe.module';
 import { TodoController } from './todo/todo.controller';
 import { TodoModule } from './todo/todo.module';
 import { TodoService } from './todo/todo.service';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { TodoService } from './todo/todo.service';
     RecipeModule,
     IngredientModule,
     TodoModule,
+    UserModule,
   ],
   controllers: [AppController, BookController, TodoController, LoginController],
   providers: [AppService, TodoService],

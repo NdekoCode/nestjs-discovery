@@ -4,4 +4,9 @@ export interface Todo {
   isCompleted?: boolean;
   description: string;
 }
+export interface IUser {
+  id?: number | string;
+  name: string;
+  email: string;
+}
 export type PartialTodo = Partial<Todo>;
