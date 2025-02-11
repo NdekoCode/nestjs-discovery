@@ -24,7 +24,11 @@ export class UserService {
     if (userExist) {
       throw new ConflictException('User Already exist');
     }
-    const newUser = { ...user, id: this.users.length + 1 };
+    const newUser = {
+      ...user,
+      createdAt: new Date().toLocaleDateString(),
+      id: this.users.length + 1,
+    };
     this.users.push(newUser);
     return newUser;
   }

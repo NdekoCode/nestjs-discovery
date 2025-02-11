@@ -1,19 +1,24 @@
+import { Request, Response } from 'express';
 import { IUser } from 'libs/types';
 
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import {
+  Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Req, Res
+} from '@nestjs/common';
 
+import { UserDto } from './dto/add-user.dto';
 import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get()
-  getAll() {
-    return this.userService.getAll();
+  getAll(@Req() req: Request, @Res() res: Response) {
+    console.log(req);
+   return res.status(HttpStatus.OK).json(this.userService.getAll() || []);
   }
 
   @Post()
-  addUser(@Body() user: IUser) {
+  addUser(@Body() user: UserDto) {
     return this.userService.addUser(user);
   }
   @Delete(':id')

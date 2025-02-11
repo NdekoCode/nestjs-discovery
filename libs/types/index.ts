@@ -8,5 +8,6 @@ export interface IUser {
   id?: number | string;
   name: string;
   email: string;
+  createdAt?: string;
 }
 export type PartialTodo = Partial<Todo>;
