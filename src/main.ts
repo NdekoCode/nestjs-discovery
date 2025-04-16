@@ -9,7 +9,11 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
   // app.get() nous permet de recuperer une instance d'un service d'un controller avec l'injection de dependance
   const configService = app.get(ConfigService);
-
+  app.enableCors({
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  });
   const PORT = configService.get('APP_PORT');
   // app.use(morgan('dev'));
   app.useGlobalPipes(
