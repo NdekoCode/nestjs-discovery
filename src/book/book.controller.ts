@@ -1,5 +1,10 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { FirstInterceptor } from 'src/interceptors/first/first.interceptor';
 
+import {
+  Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseInterceptors
+} from '@nestjs/common';
+
+@UseInterceptors(FirstInterceptor)
 @Controller('books')
 export class BookController {
   books: string[] = ['Les 48 lois du pouvoir'];
