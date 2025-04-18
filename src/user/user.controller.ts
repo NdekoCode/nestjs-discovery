@@ -1,39 +1,34 @@
-import { Request, Response } from 'express';
-import { IUser } from 'libs/types';
-
-import {
-  Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Req, Res
-} from '@nestjs/common';
-
-import { UserDto } from './dto/add-user.dto';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
-@Controller('users')
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  @Get()
-  getAll(@Req() req: Request, @Res() res: Response) {
-    console.log(req);
-   return res.status(HttpStatus.OK).json(this.userService.getAll() || []);
-  }
 
   @Post()
-  addUser(@Body() user: UserDto) {
-    return this.userService.addUser(user);
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
   }
-  @Delete(':id')
-  deleteUser(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.deleteUser(id);
+
+  @Get()
+  findAll() {
+    return this.userService.findAll();
   }
+
   @Get(':id')
-  getUser(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.getUser(id);
+  findOne(@Param('id') id: string) {
+    return this.userService.findOne(+id);
   }
-  @Put(':id')
-  updateUser(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() user: Partial<IUser>,
-  ) {
-    return this.userService.updateUser(id, user);
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.userService.update(+id, updateUserDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.userService.remove(+id);
   }
 }

@@ -11,3 +11,4 @@ export interface IUser {
   createdAt?: string;
 }
 export type PartialTodo = Partial<Todo>;
+export type DBType = 'postgres' | 'mysql' | 'sqlite' | 'mariadb' | 'oracle' | 'mssql' | 'cockroachdb' | 'cordova' | 'nativescript' | 'react-native' | 'sqljs' | 'mongodb' | 'aurora-mysql' | 'aurora-postgres' | 'expo' | 'better-sqlite3' | 'capacitor' | 'spanner' | 'cordova';
