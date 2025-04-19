@@ -5,6 +5,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { AddTodoDTO } from './dto/add-todo.dto';
+import { UpdateTodoDTO } from './dto/update-doto.dto';
 import { TodoEntity } from './entities/todo.entity';
 
 @Injectable()
@@ -37,28 +38,22 @@ export class TodoService {
     return await this.todoRepository.save(newTodos);
   }
 
-  updateTodo(id: string, todo: Partial<Todo>): Todo {
-    const findTodo = this.todos.find((t) => t.id === id);
+  async updateTodo(id: number, todo: Partial<UpdateTodoDTO>) {
+    const findTodo = await this.getSingleTodo(id);
     if (!findTodo) {
       throw new NotFoundException('Todo Not Found');
     }
-    this.todos = this.todos.map((t) => {
-      if (t.id === id) {
-        delete todo.id;
-        const updateTodo = { ...t, ...todo };
-        return updateTodo;
-      }
-      return t;
-    });
-    return findTodo;
+    const updatedTodo = Object.assign(findTodo,todo)
+    console.log("UPDATED TODO",updatedTodo)
+    return await this.todoRepository.save(updatedTodo);
+  
   }
-  deleteTodo(id: string): { message: string } {
-    const todoIndex = this.todos.findIndex((t) => +t.id === +id);
-    console.log(todoIndex);
-    if (todoIndex === -1) {
+  async deleteTodo(id: number): Promise<{ message: string }> {
+    const findTodo = this.getSingleTodo(id);
+    if (!findTodo) {
       throw new NotFoundException('Todo not found');
     }
-    this.todos.splice(todoIndex, 1);
+    await this.todoRepository.delete(id);
     return { message: 'Todo delete successfully' };
   }
 }

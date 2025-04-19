@@ -41,28 +41,28 @@ export class TodoController {
   }
 
   @Put(':id')
-  updateTodo(
-    @Param('id', ParseIntPipe) id: string,
+  async updateTodo(
+    @Param('id', ParseIntPipe) id: number,
     @Body() todo: Partial<Todo>,
-  ): Todo {
+  ) {
     return this.todoService.updateTodo(id, todo);
   }
 
   @Delete(':id')
-  deleteTodo(
+  async deleteTodo(
     @Param(
       'id',
       new ParseIntPipe({
         errorHttpStatusCode: HttpStatus.NOT_FOUND,
       }),
     )
-    id: string,
-  ): { message: string } {
-    return this.todoService.deleteTodo(id);
+    id: number,
+  ): Promise<{ message: string }> {
+    return await this.todoService.deleteTodo(id);
   }
 
   @Post('test-pipe')
-  testPipe(@Body(UpperAndMergePipe) data){
-    return data
+  testPipe(@Body(UpperAndMergePipe) data) {
+    return data;
   }
 }

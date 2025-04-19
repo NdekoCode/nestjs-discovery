@@ -54,7 +54,6 @@ export class UserService {
     if (!existingUser) {
       throw new NotFoundException(`User with ID #${id} is not found`);
     }
-    const user = new UserEntity();
     const data = Object.assign(existingUser, updateUserDto);
     console.log(`USER UPDATE ${id}`, data, updateUserDto);
     return await this.userRepository.save(data);
