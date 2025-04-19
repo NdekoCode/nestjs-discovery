@@ -8,20 +8,28 @@ export class UserEntity extends TimestampEntity{
     id:number
 
     @Column({
+        type:'varchar',
         length:200
     })
-    name:string;
+    username:string;
 
     @Column({
+        type:'varchar',
         unique:true
     })
     email:string;
 
     @Column({
+        type:'varchar',
+    })
+    password:string;
+
+    @Column({
+        type:'varchar',
         length:100
     })
     firstName:string;
-    @Column({length:100})
+    @Column({type:'varchar',length:100})
     lastName:string;
     @Column('text',{
         nullable:true
@@ -32,8 +40,13 @@ export class UserEntity extends TimestampEntity{
     gender:string;
 
     @Column({
+        type:'varchar',
+        nullable:true
+    })
+    imageUrl:string;
+    @Column({
+        type:'boolean',
         default:false
     })
     isActive:boolean;
-    
 }

@@ -1,46 +1,61 @@
 import { Type } from 'class-transformer';
 import {
-    IsBoolean, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, IsUrl, Max, Min
+    IsBoolean, IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, IsUrl, Matches, Max, Min
 } from 'class-validator';
 
+const passwordRegEx =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,20}$/;
 export class CreateUserDto {
-    @IsString()
-    @IsNotEmpty()
-    name:string;
-    
-    @IsString()
-    @IsNotEmpty()
-    firstName:string;
+  @IsOptional()
+  @Type(() => Number)
+  id: number;
+  @IsString()
+  @IsNotEmpty()
+  username: string;
 
-    @IsString()
-    @IsNotEmpty()
-    lastName:string;
+  @IsString()
+  @IsNotEmpty()
+  firstName: string;
 
-    @IsString()
-    @IsEmail()
-    @IsNotEmpty()
-    email:string;
-    
-    @IsString()
-    @Type(()=>Number)
-    @Min(18)
-    @Max(100)
-    age:number;
+  @IsString()
+  @IsNotEmpty()
+  lastName: string;
 
-    @IsEnum(['m','f'])
-    @IsNotEmpty()
-    gender:'m'|'f' | string
+  @IsString()
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+  @IsString()
+  @IsNotEmpty()
+  @Matches(passwordRegEx, {
+    message: `Password must contain Minimum 8 and maximum 20 characters, 
+    at least one uppercase letter, 
+    one lowercase letter, 
+    one number and 
+    one special character`,
+  })
+  password: string;
 
-    @IsString()
-    @IsOptional()
-    about:string;
+  @IsInt()
+  @Type(() => Number)
+  @Min(18)
+  @Max(100)
+  age: number;
 
-    @IsBoolean()
-    @IsOptional()
-    isActive:boolean;
+  @IsEnum(['m', 'f'])
+  @IsNotEmpty()
+  gender: 'm' | 'f' | string;
 
-    @IsString()
-    @IsOptional()
-    @IsUrl()
-    imageUrl:string;
+  @IsString()
+  @IsOptional()
+  about: string;
+
+  @IsBoolean()
+  @IsOptional()
+  isActive: boolean;
+
+  @IsString()
+  @IsOptional()
+  @IsUrl()
+  imageUrl: string;
 }
