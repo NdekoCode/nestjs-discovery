@@ -3,17 +3,7 @@ import { Todo } from 'libs/types';
 import { UpperAndMergePipe } from 'src/pipes/upper-and-merge/upper-and-merge.pipe';
 
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpStatus,
-  Param,
-  ParseIntPipe,
-  Post,
-  Put,
-  Query,
-  Req,
+    Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Query, Req
 } from '@nestjs/common';
 
 import { AddTodoDTO } from './dto/add-todo.dto';
@@ -42,12 +32,12 @@ export class TodoController {
   }
 
   @Get(':id')
-  singleTodo(@Param('id', ParseIntPipe) id: string): Todo {
-    return this.todoService.getSingleTodo(id);
+  async singleTodo(@Param('id', ParseIntPipe) id: number) {
+    return await this.todoService.getSingleTodo(id);
   }
   @Post()
-  addTodo(@Body() todo: AddTodoDTO): Todo {
-    return this.todoService.addTodo(todo);
+  async addTodo(@Body() todo: AddTodoDTO) {
+    return await this.todoService.addTodo(todo);
   }
 
   @Put(':id')

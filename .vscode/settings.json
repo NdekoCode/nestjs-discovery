@@ -4,5 +4,16 @@
     "cSpell.words": [
         "todos",
         "Todos"
+    ],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "ndeko-server",
+            "database": "nestjs_discovery_db",
+            "username": "ndekocode"
+        }
     ]
 }

@@ -16,7 +16,6 @@ import { logger } from './middlewares/first/logger.middleware';
 import { RecipeModule } from './recipe/recipe.module';
 import { TodoController } from './todo/todo.controller';
 import { TodoModule } from './todo/todo.module';
-import { TodoService } from './todo/todo.service';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -28,8 +27,8 @@ import { UserModule } from './user/user.module';
     TodoModule,
     UserModule,
   ],
-  controllers: [AppController, BookController, TodoController, LoginController],
-  providers: [AppService, TodoService],
+  controllers: [AppController, BookController, LoginController],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

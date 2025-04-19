@@ -1,6 +1,11 @@
 import { Todo } from 'libs/types';
+import { Repository } from 'typeorm';
 
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+
+import { AddTodoDTO } from './dto/add-todo.dto';
+import { TodoEntity } from './entities/todo.entity';
 
 @Injectable()
 export class TodoService {
@@ -12,21 +17,24 @@ export class TodoService {
       isCompleted: false,
     },
   ];
+  constructor(
+    @InjectRepository(TodoEntity)
+    private readonly todoRepository: Repository<TodoEntity>,
+  ) {}
   getTodos(): Todo[] {
     return this.todos;
   }
-  getSingleTodo(id: string) {
-    const todo = this.todos.find((t) => t.id === id);
+  async getSingleTodo(id: number) {
+    const todo = await this.todoRepository.findOne({ where: { id } });
     if (!todo) {
       throw new NotFoundException('Todo Not Found');
     }
     return todo;
   }
 
-  addTodo(todo: { title: string; description: string }): Todo {
-    const newTodos: Todo = { ...todo, isCompleted: false, id: Date.now() };
-    this.todos.push(newTodos);
-    return newTodos;
+  async addTodo(todo: AddTodoDTO) {
+    const newTodos = this.todoRepository.create(todo);
+    return await this.todoRepository.save(newTodos);
   }
 
   updateTodo(id: string, todo: Partial<Todo>): Todo {
@@ -44,7 +52,7 @@ export class TodoService {
     });
     return findTodo;
   }
-  deleteTodo(id: string):{message:string} {
+  deleteTodo(id: string): { message: string } {
     const todoIndex = this.todos.findIndex((t) => +t.id === +id);
     console.log(todoIndex);
     if (todoIndex === -1) {

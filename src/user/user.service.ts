@@ -19,9 +19,12 @@ export class UserService {
   ) {}
   async create(createUserDto: CreateUserDto) {
     const user = this.userRepository.create(createUserDto);
-    const existingUser = this.userRepository.findOne({where:{email:user.email}})
-    if(existingUser){
-      throw new ConflictException("User Already exist")
+    const existingUser = await this.userRepository.findOne({
+      where: { email: user.email },
+    });
+    console.log("EXISTING USER",existingUser)
+    if (existingUser) {
+      throw new ConflictException('User Already exist');
     }
     return await this.userRepository.save(user);
   }
@@ -51,10 +54,10 @@ export class UserService {
     if (!existingUser) {
       throw new NotFoundException(`User with ID #${id} is not found`);
     }
-    const user =new UserEntity();
-    const data  = Object.assign(existingUser, updateUserDto);
-    console.log(`USER UPDATE ${id}`,data,updateUserDto)
-    return await this.userRepository.save(data)
+    const user = new UserEntity();
+    const data = Object.assign(existingUser, updateUserDto);
+    console.log(`USER UPDATE ${id}`, data, updateUserDto);
+    return await this.userRepository.save(data);
   }
 
   async remove(id: number) {

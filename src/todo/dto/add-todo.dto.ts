@@ -5,8 +5,8 @@ export class AddTodoDTO{
     @MinLength(3)
     title:string;
 
-    @IsNotEmpty()
     @IsString()    
+    @IsOptional()
     description:string;
 
     @IsNotEmpty()
