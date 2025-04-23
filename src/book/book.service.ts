@@ -18,7 +18,11 @@ export class BookService {
   }
 
   async getBook(id: number) {
-    return await this.bookRepository.findOneOrFail({ where: { id } });
+    const book = await this.bookRepository.findOne({ where: { id } });
+    if(!book){
+        throw new NotFoundException("Book not found")
+    }
+    return book;
   }
   async addBook(book: AddBookDTO) {
     const existingBook = await this.bookRepository.findOne({

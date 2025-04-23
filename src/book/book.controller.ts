@@ -1,15 +1,7 @@
 import { FirstInterceptor } from 'src/interceptors/first/first.interceptor';
 
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post,
-  Put,
-  UseInterceptors,
+  Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseInterceptors
 } from '@nestjs/common';
 
 import { BookService } from './book.service';
@@ -30,15 +22,15 @@ export class BookController {
     return await this.bookService.getBook(id);
   }
   @Post()
-  async addBook(@Body('title') book: AddBookDTO) {
-    
+  async addBook(@Body() book: AddBookDTO) {
+
     return await this.bookService.addBook(book);
   }
 
   @Put('/:id')
   async updateBook(
     @Param('id',ParseIntPipe) bookIndex: number,
-    @Body('title') book: UpdateBookDto,
+    @Body() book: UpdateBookDto,
   ) {
     return this.bookService.updateBook(bookIndex,book);
   }
