@@ -57,8 +57,8 @@ export class TodoController {
       }),
     )
     id: number,
-  ): Promise<{ message: string }> {
-    return await this.todoService.deleteTodo(id);
+  ) {
+    return this.todoService.deleteTodo(id);
   }
 
   @Post('test-pipe')

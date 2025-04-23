@@ -48,12 +48,11 @@ export class TodoService {
     return await this.todoRepository.save(updatedTodo);
   
   }
-  async deleteTodo(id: number): Promise<{ message: string }> {
+  async deleteTodo(id: number){
     const findTodo = this.getSingleTodo(id);
     if (!findTodo) {
       throw new NotFoundException('Todo not found');
     }
-    await this.todoRepository.delete(id);
-    return { message: 'Todo delete successfully' };
+   return await this.todoRepository.delete(id);
   }
 }
