@@ -49,7 +49,7 @@ export class TodoService {
   
   }
   async deleteTodo(id: number){
-    const findTodo = this.getSingleTodo(id);
+    const findTodo = await this.getSingleTodo(id);
     if (!findTodo) {
       throw new NotFoundException('Todo not found');
     }

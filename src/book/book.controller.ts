@@ -1,53 +1,50 @@
 import { FirstInterceptor } from 'src/interceptors/first/first.interceptor';
 
 import {
-  Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseInterceptors
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  UseInterceptors,
 } from '@nestjs/common';
+
+import { BookService } from './book.service';
+import AddBookDTO from './dto/add-book.dto';
+import { UpdateBookDto } from './dto/update-book.dto';
 
 @UseInterceptors(FirstInterceptor)
 @Controller('books')
 export class BookController {
-  books: string[] = ['Les 48 lois du pouvoir'];
+  constructor(private readonly bookService: BookService) {}
   @Get()
-  list() {
-    return this.books;
+  async list() {
+    return await this.bookService.getAllBooks();
   }
 
   @Get('/:id')
-  getById(@Param('id') id: number): string {
-    const book = this.books[id];
-    if (!book) {
-      throw new NotFoundException();
-    }
-    return book;
+  async getById(@Param('id', ParseIntPipe) id: number) {
+    return await this.bookService.getBook(id);
   }
   @Post()
-  addBook(@Body('title') book: string): string {
-    this.books.push(book);
-    return book;
+  async addBook(@Body('title') book: AddBookDTO) {
+    
+    return await this.bookService.addBook(book);
   }
 
   @Put('/:id')
-  updateBook(
-    @Param('id') bookIndex: string,
-    @Body('title') newValue: string,
-  ): string {
-    const findBook = this.books[bookIndex];
-    if (!findBook) {
-      throw new NotFoundException();
-    }
-
-    this.books[+bookIndex] = newValue;
-    return newValue;
+  async updateBook(
+    @Param('id',ParseIntPipe) bookIndex: number,
+    @Body('title') book: UpdateBookDto,
+  ) {
+    return this.bookService.updateBook(bookIndex,book);
   }
 
   @Delete('/:id')
-  deleteBook(@Param('id') bookIndex: string) {
-    console.log(this.books);
-    const findBook = this.books[+bookIndex];
-    if (!findBook) {
-      throw new NotFoundException();
-    }
-    this.books.splice(+bookIndex, 1);
+  async deleteBook(@Param('id',ParseIntPipe) bookIndex: number) {
+    return await this.bookService.deleteBook(bookIndex);
   }
 }

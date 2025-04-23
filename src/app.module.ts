@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BookController } from './book/book.controller';
+import { BookModule } from './book/book.module';
 import { IngredientModule } from './ingredient/ingredient.module';
 import { LoginController } from './login/login.controller';
 import { FirstMiddleware } from './middlewares/first/first.middleware';
@@ -26,8 +26,9 @@ import { UserModule } from './user/user.module';
     IngredientModule,
     TodoModule,
     UserModule,
+    BookModule
   ],
-  controllers: [AppController, BookController, LoginController],
+  controllers: [AppController, LoginController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
